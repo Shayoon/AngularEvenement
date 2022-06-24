@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Utilisateur } from 'src/app/models/utilisateur.model';
 
 
 
@@ -12,20 +13,22 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class UtilisateurFormulaireComponent implements OnInit {
 
 
+  @Input() default?: Utilisateur;
+
   @Output()
   finish = new EventEmitter
 
-  form: FormGroup;
+  form : FormGroup = new FormGroup({});
   constructor(
     private builder : FormBuilder
   ) { 
-    this.form = this.builder.group({
-      "nom": [''],
-      "prenom": [''],
-    })
   }
 
   ngOnInit(): void {
+    this.form = this.builder.group({
+      "nom": [this.default?.nom || ''],
+      "prenom": [this.default?.prenom || ''],
+    })
   }
 
   onSubmit(){
