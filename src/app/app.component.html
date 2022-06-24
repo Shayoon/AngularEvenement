@@ -1,6 +1,8 @@
-{{utilisateurs | json}}
-<app-utilisateur-card 
-*ngFor="let utilisateur of utilisateurs" 
-[utilisateur]="utilisateur"
-(delete)="onDelete($event)"></app-utilisateur-card>
+<div class="list-container">
+    <div *ngFor="let utilisateur of utilisateurs">
+        <app-utilisateur-card  [utilisateur]="utilisateur"
+            (delete)="onDelete($event)" (edit)="onEdit($event)"></app-utilisateur-card>
+        <app-utilisateur-formulaire *ngIf="utilisateur.id == editUtilisateur?.id"></app-utilisateur-formulaire>
+    </div>
+</div>
 <app-utilisateur-formulaire (finish)="onSave($event)"></app-utilisateur-formulaire>

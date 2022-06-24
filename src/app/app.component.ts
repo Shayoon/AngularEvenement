@@ -10,6 +10,7 @@ import { UtilisateurHttpService } from './services/utilisateur-http.service';
 export class AppComponent {
   
   utilisateurs : Utilisateur[] = [];
+  editUtilisateur?: Utilisateur;
   
   constructor(private service: UtilisateurHttpService){
   this.service.findAll().subscribe((data)=> this.utilisateurs = data)
@@ -23,5 +24,8 @@ export class AppComponent {
     this.service.delete(id).subscribe(()=>{
       this.utilisateurs = this.utilisateurs.filter(utilisateur=>utilisateur.id !== id)
     });
+  }
+  onEdit(utilisateur: Utilisateur){
+    this.editUtilisateur = utilisateur;
   }
 }

@@ -13,6 +13,7 @@ export class UtilisateurCardComponent implements OnInit {
   utilisateur! : Utilisateur;
 
   @Output() delete = new EventEmitter();
+  @Output() edit = new EventEmitter();
   
   
   constructor() { }
@@ -20,8 +21,12 @@ export class UtilisateurCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClick(){
+  onDelete(){
     this.delete.emit(this.utilisateur.id)
+  }
+
+  onEdit(){
+    this.edit.emit(this.utilisateur)
   }
 
 }
